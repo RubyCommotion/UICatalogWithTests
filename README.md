@@ -1,3 +1,11 @@
+Work in Progress
+================
+
+- add in tests
+- move app from 1:1 conversion of Obj-C UICatalog source to more closely follow Ruby BPs
+
+
+
 UICatalogConversion App
 =======================
 

@@ -2,7 +2,7 @@ class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     
-    main_view_controller = RcMainViewController.alloc.init
+    main_view_controller = RcRootViewController.alloc.init
     main_view_controller.title = 'UICatalog'
     
     UINavigationBar.appearance.setBarTintColor(UIColor.lightGrayColor)

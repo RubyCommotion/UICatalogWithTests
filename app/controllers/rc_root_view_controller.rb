@@ -1,17 +1,15 @@
-class RcMainViewController < UITableViewController
+class RcRootViewController < UITableViewController
+  CELL_IDENTIFIER = 'root_tvc_cell'
   attr_accessor :menu_list
-
-  CELL_IDENTIFIER = 'MyIdentifier'
 
   def viewDidLoad
     super
     # set our view controller as delegate and data source for the table view
-    tableView.delegate = self
-    tableView.dataSource = self
-    
-    # construct the array of page descriptions we will use (each description is a hash) 
-    self.menu_list = []
 
+    self.title = 'UIKit Views and Controls'
+
+    tableView.delegate = tableView.dataSource = self
+    
     # instantiate VCs for the menu
     buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
     controls_view_controller = RcControlsViewController.alloc.initWithStyle(UITableViewStylePlain)
@@ -25,6 +23,9 @@ class RcMainViewController < UITableViewController
     toolbar_view_controller = RcToolbarViewController.alloc.init
     alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
     transition_view_controller = RcTransitionViewController.alloc.init
+
+    # construct the array of page descriptions we will use (each description is a hash)
+    self.menu_list = []
 
     # add the info needed for each VC
     self.menu_list << {:title => 'ButtonsTitle'.localized, :explain => 'ButtonsExplain'.localized, :view_controller => buttons_view_controller}
@@ -54,7 +55,8 @@ class RcMainViewController < UITableViewController
     UINavigationBar.appearance.setBarTintColor(UIColor.lightGrayColor)
   end
 
-  # UITableViewDelegate 
+
+    # UITableViewDelegate
   # the table's selection has changed, switch to that item's UIViewController
 
   def tableView(table_view, didSelectRowAtIndexPath:index_path)
@@ -68,7 +70,7 @@ class RcMainViewController < UITableViewController
   def tableView(table_view, numberOfRowsInSection:section)
     self.menu_list.count
   end
-  
+
   # tell our table what kind of cell to use and its title for the given row
 
   def tableView(table_view, cellForRowAtIndexPath: index_path)
@@ -78,6 +80,7 @@ class RcMainViewController < UITableViewController
     cell.detailTextLabel.text = self.menu_list.objectAtIndex(index_path.row).objectForKey(:explain)
     cell
   end
+
 
 end
 
