@@ -1,3 +1,6 @@
+UICatalogWithTests
+==================
+
 Work in Progress
 ================
 
@@ -20,33 +23,7 @@ Apple's UICatalog Readme:  https://developer.apple.com/library/ios/samplecode/ui
 Purpose of UICatalogConversion App
 ==================================
 
-This conversion of UICatalog's Objective-C code into RubyMotion source code is meant to serve two purposes:
-
-  1. to provide template code for all iOS 7 UI elements (copy for re-use purposes)
-
-  2. to demonstrate how Objective-C code is converted to RubyMotion syntax.
-
-
-The Code Conversion is Not Completely 1:1
-=========================================
-
-As demonstration code for converting Objective-C to RubyMotion source code, an attempt was made to align, as much as possible, each of the code bases, however,
-there are several ways in which the alignment is not 1:1.
-
-  1. The current Apple UICatalog example is iOS 6 compliant and the RubyMotion code is iOS 7 compliant.
-
-  2. To demonstrate how concise Ruby syntax is, things like Objective-C's return statement were removed.
-     The last value referenced in a Ruby method is returned by default. This is just one example.
-
-  3. The custom UIPicker code in the Objective-C code did not render correctly and, as such, a fair amount of code was re-written to correct the problem.
-
-  4. RubyMotion eliminates the need for Objective-C header files.
-
-  5. Under Ruby, an object's methods and properties types are determined by "Duck Typing" which makes the code that much more concise. http://en.wikipedia.org/wiki/Duck_typing
-
-  6. The Objective-C UICatalog app uses Interface Builder to create many of the UI views - the RubyMotion conversion created the UI views using code.
-     RubyMotion is capable of using IB files but it was decided to show how IB views can be converted into code.
-
+  To provide template code for all iOS 7 UI elements and spec tests
 
 
 UICatalogConversion App
@@ -98,5 +75,3 @@ Delegate Folder -a delegate folder was added to the usual RubyMotion folder buil
 
 Contributors
 ============
-
-Salman Ansari, Yaakov Gamliel, Forrest Grant, René Köcher, Dennis Major, Matthew Nguyen, Yvan Ross and Jack Watson-Hamblin

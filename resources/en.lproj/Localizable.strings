@@ -1,3 +1,6 @@
+/* View Controller titles */
+"UIKit_Views_and_Controls" = "UIKit Views and Controls";
+
 "ButtonsTitle" = "Buttons";
 "ButtonsExplain" = "Various uses of UIButton";
 "ControlsTitle" = "Controls";
@@ -59,7 +62,18 @@
 "UIAlertViewMessage" = "Enter a password:";
 "UIAlertViewMessageGeneric" = "<Alert message>";
 
-"UIActionSheetTitle" = "UIActionSheet <Title of pending action>";
+/* UIActionSheet alerts */
+"as_dialog_ok_title" = "UIActionSheet Alert With OK Button";
+"as_dialog_ok_cancel_title" = "UIActionSheet Alert With Cancel and OK";
+"as_dialog_custom_action" = "UIActionSheet Custom Alert";
+
+/* UIAlertView alerts */
+"alert_simple_action" = "Alert With OK Button";
+"alert_ok_cancel_action" = "Alert With OK and Cancel Button";
+"alert_other_action" = "Alert With Custom Buttons";
+"alert_secure_text_action" = "Alert With Secure Input";
+
+
 
 "CancelButtonTitle" = "Cancel";
 "OKButtonTitle" = "OK";

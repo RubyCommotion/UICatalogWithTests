@@ -1,5 +1,9 @@
 class RcAlertsViewController < UITableViewController
 
+  attr_accessor :dialog_simple_action_obj, :dialog_ok_cancel_action_obj, :dialog_other_action_obj,
+                :alert_simple_action_obj, :alert_ok_cancel_action_obj, :alert_other_action_obj,
+                :alert_secure_text_action_obj
+
   ALERT_CELL_ID = 'AlertCellID'
   SOURCE_CELL_ID = 'SourceCellID'
 
@@ -18,10 +22,10 @@ class RcAlertsViewController < UITableViewController
     self.title = 'Alerts'
  
     @data_source_array = [
-      { title: 'UIActionSheet Class', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - dialog_simple_action' },
+      { title: 'UIActionSheet Class', label: 'Show Simple OK', source: 'rc_alerts_view_controller.rb - dialog_simple_action' },
       { title: 'UIActionSheet Class', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - dialog_ok_cancel_action' },
       { title: 'UIActionSheet Class', label: 'Show Customized', source: 'rc_alerts_view_controller.rb - dialog_other_action' },
-      { title: 'UIAlertView Class', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - alert_simple_action' },
+      { title: 'UIAlertView Class', label: 'Show Simple OK', source: 'rc_alerts_view_controller.rb - alert_simple_action' },
       { title: 'UIAlertView Class', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - alert_ok_cancel_action' },
       { title: 'UIAlertView Class', label: 'Show Custom', source: 'rc_alerts_view_controller.rb - alert_other_action' },
       { title: 'UIAlertView Class', label: 'Show Secure Text Input', source: 'rc_alerts_view_controller.rb - alert_secure_text_action' }
@@ -29,6 +33,18 @@ class RcAlertsViewController < UITableViewController
     # register our cell IDs for later when we are asked for UITableViewCells
     self.tableView.registerClass(UITableViewCell, forCellReuseIdentifier: ALERT_CELL_ID)
     self.tableView.registerClass(UITableViewCell, forCellReuseIdentifier: SOURCE_CELL_ID)
+
+    # alert attr_accessors to accommodate spec tests
+    self.dialog_simple_action_obj = dialog_simple_action
+    self.dialog_ok_cancel_action_obj = dialog_ok_cancel_action
+    self.dialog_other_action_obj = dialog_other_action
+
+    self.alert_simple_action_obj = alert_simple_action
+    self.alert_ok_cancel_action_obj = alert_ok_cancel_action
+    self.alert_other_action_obj = alert_other_action
+    self.alert_secure_text_action_obj = alert_secure_text_action
+
+
   end
 
 
@@ -36,31 +52,32 @@ class RcAlertsViewController < UITableViewController
 
   #open a dialog with just an OK button
   def dialog_simple_action
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
+    action_sheet = UIActionSheet.alloc.initWithTitle('as_dialog_ok_title'.localized,
       delegate:self,
       cancelButtonTitle: nil,
       destructiveButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
-    action_sheet.showInView(self.view)
+    #self.dialog_simple_action_obj = action_sheet
+    action_sheet
   end
  
   # open a dialog with an OK and cancel button
   def dialog_ok_cancel_action
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
+    action_sheet = UIActionSheet.alloc.initWithTitle('as_dialog_ok_cancel_title'.localized,
       delegate:self,
       cancelButtonTitle: 'CancelButtonTitle'.localized,
       destructiveButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
-    action_sheet.showInView(self.view)
+    action_sheet
   end
  
   # open a dialog with two custom buttons
   def dialog_other_action
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
+    action_sheet = UIActionSheet.alloc.initWithTitle('as_dialog_custom_action'.localized,
       delegate:self,
       cancelButtonTitle: nil,
       destructiveButtonTitle: nil,
@@ -68,42 +85,45 @@ class RcAlertsViewController < UITableViewController
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
     action_sheet.destructiveButtonIndex = 1
-    action_sheet.showInView(self.view)
+    action_sheet
   end
  
   # UIAlertView
 
   # open an alert with just an OK button
   def alert_simple_action
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+    alert = UIAlertView.alloc.initWithTitle('alert_simple_action'.localized,
       message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
       cancelButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
-    alert.show
+    #alert.show
+    alert
   end
  
   # open a alert with an OK and cancel button
   def alert_ok_cancel_action
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+    alert = UIAlertView.alloc.initWithTitle('alert_ok_cancel_action'.localized,
       message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
       cancelButtonTitle: 'CancelButtonTitle'.localized,
       otherButtonTitles: 'OKButtonTitle'.localized, nil
     )
-    alert.show
+    #alert.show
+    alert
   end
 
   # open an alert with two custom buttons
   def alert_other_action
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+    alert = UIAlertView.alloc.initWithTitle('alert_other_action'.localized,
       message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
       cancelButtonTitle: 'CancelButtonTitle'.localized,
       otherButtonTitles: 'ButtonTitle1'.localized, 'ButtonTitle2'.localized, nil
     )
-    alert.show
+    #alert.show
+    alert
   end
 
   # open an alert with two custom buttons plus a secure text input field
@@ -115,7 +135,8 @@ class RcAlertsViewController < UITableViewController
       otherButtonTitles: 'OKButtonTitle'.localized, nil
     )
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput
-    alert.show
+    #alert.show
+    alert
   end
 
   # UIActionSheetDelegate
@@ -163,19 +184,35 @@ class RcAlertsViewController < UITableViewController
     if index_path.row == 0
       case index_path.section
       when UIACTION_SIMPLE_SECTION
-        dialog_simple_action
+        dialog_simple_action_obj
+        dialog_simple_action_obj.showInView(self.view)
       when UIACTION_OKCANCEL_SECTION
-        dialog_ok_cancel_action
+        dialog_ok_cancel_action_obj
+        dialog_ok_cancel_action_obj.showInView(self.view)
       when UIACTION_CUSTOM_SECTION
-        dialog_other_action
+        dialog_other_action_obj
+        dialog_other_action_obj.showInView(self.view)
+
       when UIALERT_SIMPLE_SECTION
-        alert_simple_action
+        alert_simple_action_obj
+        alert_simple_action_obj.show
+        #dialog_other_action_obj.showInView(self.view)
+        #alert_simple_action
       when UIALERT_OKCANCEL_SECTION
         alert_ok_cancel_action
+        alert_ok_cancel_action.show
+        #dialog_other_action_obj.showInView(self.view)
+        #alert_ok_cancel_action
       when UIALERT_CUSTOM_SECTION
         alert_other_action
+        alert_other_action.show
+        #dialog_other_action_obj.showInView(self.view)
+        #alert_other_action
       when UIALERT_SECURETEXT_SECTION
         alert_secure_text_action
+        alert_secure_text_action.show
+        #dialog_other_action_obj.showInView(self.view)
+        #alert_secure_text_action
       end
     end
   end

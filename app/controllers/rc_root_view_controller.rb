@@ -6,7 +6,7 @@ class RcRootViewController < UITableViewController
     super
     # set our view controller as delegate and data source for the table view
 
-    self.title = 'UIKit Views and Controls'
+    self.title = 'UIKit_Views_and_Controls'.localized
 
     tableView.delegate = tableView.dataSource = self
     
