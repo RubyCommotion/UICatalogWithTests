@@ -19,8 +19,9 @@ class RcAlertsViewController < UITableViewController
 
   def viewDidLoad
     super
+
     self.title = 'Alerts'
- 
+
     @data_source_array = [
       { title: 'UIActionSheet Class', label: 'Show Simple OK', source: 'rc_alerts_view_controller.rb - dialog_simple_action' },
       { title: 'UIActionSheet Class', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - dialog_ok_cancel_action' },
@@ -59,7 +60,6 @@ class RcAlertsViewController < UITableViewController
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
-    #self.dialog_simple_action_obj = action_sheet
     action_sheet
   end
  
@@ -184,35 +184,19 @@ class RcAlertsViewController < UITableViewController
     if index_path.row == 0
       case index_path.section
       when UIACTION_SIMPLE_SECTION
-        dialog_simple_action_obj
-        dialog_simple_action_obj.showInView(self.view)
+        puts "Object: #{dialog_simple_action_obj.showInView(self.view).frame.size.width}"
       when UIACTION_OKCANCEL_SECTION
-        dialog_ok_cancel_action_obj
         dialog_ok_cancel_action_obj.showInView(self.view)
       when UIACTION_CUSTOM_SECTION
-        dialog_other_action_obj
         dialog_other_action_obj.showInView(self.view)
-
       when UIALERT_SIMPLE_SECTION
-        alert_simple_action_obj
         alert_simple_action_obj.show
-        #dialog_other_action_obj.showInView(self.view)
-        #alert_simple_action
       when UIALERT_OKCANCEL_SECTION
-        alert_ok_cancel_action
         alert_ok_cancel_action.show
-        #dialog_other_action_obj.showInView(self.view)
-        #alert_ok_cancel_action
       when UIALERT_CUSTOM_SECTION
-        alert_other_action
         alert_other_action.show
-        #dialog_other_action_obj.showInView(self.view)
-        #alert_other_action
       when UIALERT_SECURETEXT_SECTION
-        alert_secure_text_action
         alert_secure_text_action.show
-        #dialog_other_action_obj.showInView(self.view)
-        #alert_secure_text_action
       end
     end
   end

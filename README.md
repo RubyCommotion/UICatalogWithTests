@@ -4,25 +4,21 @@ UICatalogWithTests
 Work in Progress
 ================
 
-- add in tests
-- move app from 1:1 conversion of Obj-C UICatalog source to more closely follow Ruby BPs
+- add in tests to the UICatalogConversion RubyMotion app; apply more Ruby like syntax and practices.
 
 A Note re Testing Strategy
 ==========================
-
-The unit tests for this app could be criticized for both being fragile and also for doing more than one assert per unit test.
 
 A large number of tests are run; particularly the tests of label text which could be viewed as being overly brittle.
 In this app's case the labelling is important and needs to be accurate e.g. file location of controls and views so they
 are tested.
 
-Another place where convention is broken is the rule that recommends one assert per unit test - see the following link for
-reasons as to why this is not a hard and fast rule:
+Another place where convention is broken is the recommendation for one assert per unit test - see the following link for
+reasons as to why this is not always a hard and fast rule:
 http://programmers.stackexchange.com/questions/7823/is-it-ok-to-have-multiple-asserts-in-a-single-unit-test
 
-While there are a large number of spec tests for this app, the purpose of the app is to demo testing - as always judgement is required
-with respect to BPs - at some point the returns of more tests has diminished to the point where further tests don't make sense. In this case,
-we're ignoring that trade-off - normally you wouldn't.
+While there are a large number of spec tests for this app, their purpose is to demo testing - judgement is required
+whether any further tests make sense. In this case, we're ignoring that trade-off - normally you wouldn't.
 
 
 UICatalogConversion App

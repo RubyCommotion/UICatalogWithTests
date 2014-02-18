@@ -3,10 +3,6 @@ describe 'Application UICatalogConversion' do
     @app = UIApplication.sharedApplication
   end
 
-  after do
-    @app = nil
-  end
-
   it 'has one window' do
     @app.windows.size.should == 1
   end
